@@ -5,8 +5,8 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 """
-实现转账、
-历史交易查询
+实现转账(Real time transfer)、
+历史交易查询(Transaction history search)
 """
 
 
