@@ -36,3 +36,5 @@ here we put our initial concerns and issues to discuss.
 	```
 	
 	probably mistyped: totalSupply_ = <b>initialSupply</b> * 10 ... ?
+	
+- **transver vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
