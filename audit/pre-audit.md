@@ -32,11 +32,5 @@ here we put our initial concerns and issues to discuss.
 	```
 	
 	probably mistyped: totalSupply_ = <b>initialSupply</b> * 10 ... ?
-
-- **Safety method**<br>
-	It is considered as a good practice to have safety methods, like a `ClaimTokens()`, to reclaim mistakenly sent tokens.
-	
-- **Safety method**<br>
-	It is considered as a good practice to have safety methods, like a `ClaimTokens()`, to reclaim mistakenly sent tokens.
 	
 - **transver vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
