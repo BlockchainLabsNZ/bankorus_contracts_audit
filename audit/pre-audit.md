@@ -7,9 +7,13 @@ here we put our initial concerns and issues to discuss.
 ## Questions
 
 - **RBAC and roles**
+	Why do you need all of that roles? A mapping(address => bool) would be cheaper for gas consumption and easier for understanding. Any reasons for using all set of that? 
 
-	Why do you need all of that roles, de(in)creaseable approvals and so on. Any reasons for that? Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner?
+- **onlyOwner modifier**
+	Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner?
 
+- **de(in)creaseApproval**
+	Why there are de(in)creaseable approvals functions? approve() function can do it perfectly.
 
 <br>
 
