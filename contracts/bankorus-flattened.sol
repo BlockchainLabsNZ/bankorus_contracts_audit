@@ -589,7 +589,7 @@ contract BankorusToken is MintableToken, Pausable, RBAC {
      */
 
     function BankorusToken (uint256 initialSupply) public {
-        totalSupply_ = totalSupply * 10 ** uint256(decimals);
+        totalSupply_ = initialSupply * 10 ** uint256(decimals);
         balances[owner] = totalSupply_;  // Creator address is assigned all initial tokens
         contractAddress = this;
         Transfer(0x0, owner, totalSupply_); // Send initial supply of tokens to creator
