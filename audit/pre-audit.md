@@ -31,6 +31,7 @@ here we put our initial concerns and issues to discuss.
 	 function BankorusToken (uint256 initialSupply) public {
         totalSupply_ = totalSupply * 10 ** uint256(decimals);
         ...
-    }
-```
-probably mistyped: totalSupply_ = <b>initialSupply</b> * 10 ... ?
+     }
+	```
+	
+	probably mistyped: totalSupply_ = <b>initialSupply</b> * 10 ... ?
