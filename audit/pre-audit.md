@@ -10,6 +10,10 @@ here we put our initial concerns and issues to discuss.
 
 	Why do you need all of that roles, de(in)creaseable approvals and so on. Any reasons for that? Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner?
 
+- **Unclear purpose variable**
+	What is the purpose of `roleFrozen`? The comment says it is the initial state, then should it be a Boolean flag? After reading the codes, this variable looks more like a fixed role name. Then we would suggest change the name and comment of this variable.
+	[bankorus.sol, Line 21](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/932bdf8163dc7c654528cd185474902471c8bc7a/contracts/bankorus.sol#L21)
+
 <br>
 
 ## Suggestions
