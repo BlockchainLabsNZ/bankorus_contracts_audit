@@ -5,10 +5,10 @@
 ## Questions
 
 - **RBAC and roles**
-<br>Why do you need all of that roles? A mapping(address => bool) would be cheaper for gas consumption and easier for understanding. Any reasons for using all set of that? 
+<br>Why do you need all of that roles? 
 
 - **onlyOwner modifier**
-<br>Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner?
+<br>A mapping(address => bool) would be cheaper for gas consumption and easier for understanding. Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner?
 
 - **Which functions from StandardToken.sol are needed?**
 <br>Just to understand
