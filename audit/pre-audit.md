@@ -26,6 +26,8 @@ It will be clearer and cheaper.
 
 - **Checks if sale is Paused**<br>
 	`transfer()` function checks if the sale is Paused or not, but `transferFrom()` doesn't have same check. Do you need to check it? 
-	
-	
+
+- **ArrayLimit**<br>
+	`uint256 public arrayLimit = 20;`<br>uint256 could be replaced with uint8.
+
 - **transver vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
