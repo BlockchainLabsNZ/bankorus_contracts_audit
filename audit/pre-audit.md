@@ -36,6 +36,6 @@ It will be clearer and cheaper.
 	    return super.transferFrom(_from, _to, _value);
 	  }
 	```
-This function overload doesn't change anything and just call super function. Consider to remove it. 
+	This function overload doesn't change anything and just call super function. Consider to remove it. 
 
 - **transver vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
