@@ -14,7 +14,7 @@ It will be clearer and cheaper.
 ## Suggestions
 
 	
-- **1. Self-made checks vs standard modifiers**, [Line 19](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L19):<br>
+- **1. Self-made checks vs standard modifiers**, [Line 19](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L19), bankorus.sol:<br>
 	consider to replace 
 	
 	```
@@ -24,7 +24,7 @@ It will be clearer and cheaper.
 	```
 	to standard modifiers `whenNotPaused()` and `onlyOwner()` from the Pausable.sol and Ownable.sol respectively.
 	
-- **2. Anyone can transfer tokens even after pause() function has been called**
+- **2. Anyone can transfer tokens even after pause() function has been called**, [Line 18](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L18), bankorus.sol:
 
 	```
   	function transfer(address _to, uint256 _value) public returns (bool success) {
@@ -44,7 +44,7 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 - **3. Checks if sale is Paused**:<br>
 	`transfer()` function checks if the sale is Paused or not, but `transferFrom()` doesn't have same check. Do you need to check it? 
 	
-- **4. ArrayLimit**, [Line 11](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L11):
+- **4. ArrayLimit**, [Line 11](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L11), bankorus.sol:
 	
 	`uint256 public arrayLimit = 20;`<br>uint256 could be replaced with uint8.
 
@@ -58,7 +58,7 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 	
 	This function overload doesn't change anything and just call super function. Consider to remove it. 
 
-- **6. Function allowance() has a mistake**, [line 45](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L45):
+- **6. Function allowance() has a mistake**, [line 45](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L45), bankorus.sol:
 	
 	```
   function allowance(address _spender) public view returns (uint256) {
