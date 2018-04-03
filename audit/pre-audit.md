@@ -41,7 +41,7 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 	    return super.transfer(_to, _value);
 	```
 	    
-	`transfer()` function doesn't check for allowance. If you want check allowance before sending BKT use `transferFrom()`.
+	Standard  ERC20 `transfer()` function from OpenZeppelin framework (BasicToken.sol) doesn't check for allowance. If you want check allowance before sending BKT use `transferFrom()`.
 
 
 - **5. ArrayLimit**, [Line 11](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L11), bankorus.sol:
