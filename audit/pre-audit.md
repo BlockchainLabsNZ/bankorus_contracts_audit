@@ -2,15 +2,6 @@
 
 <br>
 
-## Questions
-
-- **RBAC and roles**
-<br>Now only one function of RBAC.sol is used: `onlyAdmin()`. Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner? 
-It will be clearer and cheaper.
-
-
-<br>
-
 ## Suggestions
 
 	
@@ -70,3 +61,9 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 
 	
 - **7. transfer vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
+
+- **8. RBAC and roles**
+<br>Now only one function of RBAC.sol is used: `onlyAdmin()`. Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner? 
+It will be clearer and cheaper.
+
+
