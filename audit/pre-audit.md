@@ -50,12 +50,7 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 	    
 	Standard  ERC20 `transfer()` function from OpenZeppelin framework (BasicToken.sol) doesn't check for allowance. If you want check allowance before sending BKT use `transferFrom()`.
 
-
-- **5. ArrayLimit**, [Line 11](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L11), bankorus.sol:
-	
-	`uint256 public arrayLimit = 20;`<br>uint256 could be replaced with uint8.
-
-- **6. Function overload without reason**, [line 25](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L25), bankorus.sol:<br>
+- **5. Function overload without reason**, [line 25](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L25), bankorus.sol:<br>
 
 	```
 	function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
@@ -66,7 +61,7 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 	Calls the `transferFrom()` function of the base contract, without any changes. 
 	You can remove this code and just call the original function from the base contract.
 
-- **7. Function allowance() has a mistake**, [line 45](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L45), bankorus.sol:
+- **6. Function allowance() has a mistake**, [line 45](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L45), bankorus.sol:
 	
 	```
   function allowance(address _spender) public view returns (uint256) {
@@ -77,7 +72,7 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 	Overloaded `allowance()` send the address of the contract (`msg.sender`), not the contract owner. It is assumed to approve token transfer from the contract address, which is nonsense, because tokens was minted to the contract owner, not to the contract. 
 
 	
-- **8. RBAC and roles** [line 34](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L34), bankorus.sol:
+- **7. RBAC and roles** [line 34](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L34), bankorus.sol:
 
 	```
 	   function transferToAddresses(address[] _addresses, uint256[] _values) onlyAdmin public returns (bool success) {
@@ -87,6 +82,6 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 
 	Now only one function of RBAC.sol is used: `onlyAdmin()`. Why not to use standard approach with `onlyOwner` modifier and multisig account as an Owner? It will be clearer and cheaper.
 
-- **9. transfer vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
+- **8. transfer vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
 
 
