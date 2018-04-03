@@ -10,7 +10,7 @@
 	    balances[owner] = totalSupply_;
 	}
 	```
-	There is no Transfer() event from the zero address when the tokens are created which is required by token tracking software like Etherscan.io
+	There is no Transfer() event from the zero address when the tokens are created which is required by token tracking software like Etherscan.io. See line 35 of the MintableToken.sol for example.
 
 - **1. Self-made checks vs standard modifiers**, [Line 19](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L19), bankorus.sol:<br>
 	consider to replace 
