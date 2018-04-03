@@ -2,6 +2,16 @@
 
 <br>
 
+- **0. No Transfer() event fired**, [Line 13](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L13), bankorus.sol:
+
+	```
+  	function bankorus(uint256 _totalSupply) public {
+	    totalSupply_ = _totalSupply * 10 ** uint256(decimals);
+	    balances[owner] = totalSupply_;
+	}
+	```
+	There is no Transfer() event from the zero address when the tokens are created which is required by token tracking software like Etherscan.io
+
 - **1. Self-made checks vs standard modifiers**, [Line 19](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L19), bankorus.sol:<br>
 	consider to replace 
 	
