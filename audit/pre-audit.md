@@ -26,22 +26,21 @@ It will be clearer and cheaper.
 	
 - **2. Anyone can transfer tokens even after pause() function has been called**
 
-```
-  function transfer(address _to, uint256 _value) public returns (bool success) {
-    if (!paused) {
-      require(msg.sender == owner);
-    }
-    return super.transfer(_to, _value);
-  }
-```
-This function in its current state allows for transfers to take place by any token holder while tokens are paused.
+	```
+  	function transfer(address _to, uint256 _value) public returns (bool success) {
+    	  if (!paused) {
+            require(msg.sender == owner);
+    	  }
+          return super.transfer(_to, _value);
+  	}
+	```
+	This function in its current state allows for transfers to take place by any token holder while tokens are paused.
 
-One possible solution would be to change `if (!paused) {` to `if (paused) {`
+	One possible solution would be to change `if (!paused) {` to `if (paused) {`
 
-See `pause()` in block [6688132](https://kovan.etherscan.io/tx/0x248e80205db524fe8af214bbcda4f58eb2550fa9e344b875416b76f491f84eac). 
+	See `pause()` in block [6688132](https://kovan.etherscan.io/tx/0x248e80205db524fe8af214bbcda4f58eb2550fa9e344b875416b76f491f84eac). 
 Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0xefba4b037a0af91a71b459313f7355086574fb976cc989df22433dc964b287e0).
 	
-
 - **3. Checks if sale is Paused**:<br>
 	`transfer()` function checks if the sale is Paused or not, but `transferFrom()` doesn't have same check. Do you need to check it? 
 	
