@@ -84,4 +84,8 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 
 - **8. transfer vs withdraw**<br>Push(transfer) approach is chosen, which is not a [best practice](https://ethereum-contract-security-techniques-and-tips.readthedocs.io/en/latest/recommendations/#favor-pull-over-push-for-external-calls).  	
 
+- **9. companycoin.py - run the script**<br>`self.endpoint.eth.enable_unaudited_features()` should be added before the line that builds transaction in order to run the script.   	
+
+- **10. companycoin.py - multiple addresses**<br>`eth.getTransactionCount` returns the same number for the the same block. To be able run the script multiple times without waiting for the next block it is necessary to change the way of getting unique nonce for every built transaction. 
+
 
