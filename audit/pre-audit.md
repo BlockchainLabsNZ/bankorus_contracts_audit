@@ -88,4 +88,4 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 
 - **10. companycoin.py - multiple addresses**<br>`eth.getTransactionCount` returns the same number for the the same block. To be able run the script multiple times without waiting for the next block it is necessary to change the way of getting unique nonce for every built transaction. 
 
-
+- **11. contract naming**<br>The convention is to use a capital letter for all contract names. 
