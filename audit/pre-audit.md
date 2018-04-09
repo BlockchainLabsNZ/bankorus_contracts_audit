@@ -12,16 +12,6 @@
 	```
 	There is no Transfer() event from the zero address when the tokens are created which is required by token tracking software like Etherscan.io. See line 35 of the MintableToken.sol for example.
 
-- **1. Self-made checks vs standard modifiers**, [Line 19](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L19), bankorus.sol:<br>
-	consider to replace 
-	
-	```
-	if (!paused) {
-      require(msg.sender == owner);
-    }
-	```
-	to standard modifiers `whenNotPaused()` and `onlyOwner()` from the Pausable.sol and Ownable.sol respectively.
-	
 - **2. Anyone can transfer tokens even after pause() function has been called**, [Line 18](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L18), bankorus.sol:
 
 	```
@@ -41,14 +31,6 @@ Subsequently see `transfer()` in block [6688268](https://kovan.etherscan.io/tx/0
 	
 - **3. Checks if sale is Paused**:<br>
 	`transfer()` function checks if the sale is Paused or not, but `transferFrom()` doesn't have same check. Do you need to check it? 
-
-- **4. Standard transfer() function doesn't check for allowance** , [line 22](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L22), bankorus.sol:
-
-	```
-	    return super.transfer(_to, _value);
-	```
-	    
-	Standard  ERC20 `transfer()` function from OpenZeppelin framework (BasicToken.sol) doesn't check for allowance. If you want check allowance before sending BKT use `transferFrom()`.
 
 - **5. Function overload without reason**, [line 25](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/cbba53880d3b26e37f6c3b0840b14034ca4159d3/contracts/bankorus.sol#L25), bankorus.sol:<br>
 
