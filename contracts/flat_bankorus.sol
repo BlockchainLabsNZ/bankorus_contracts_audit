@@ -42,260 +42,7 @@ contract Ownable {
 
 }
 
-// File: zeppelin-solidity/contracts/lifecycle/Pausable.sol
 
-/**
- * @title Pausable
- * @dev Base contract which allows children to implement an emergency stop mechanism.
- */
-contract Pausable is Ownable {
-  event Pause();
-  event Unpause();
-
-  bool public paused = false;
-
-
-  /**
-   * @dev Modifier to make a function callable only when the contract is not paused.
-   */
-  modifier whenNotPaused() {
-    require(!paused);
-    _;
-  }
-
-  /**
-   * @dev Modifier to make a function callable only when the contract is paused.
-   */
-  modifier whenPaused() {
-    require(paused);
-    _;
-  }
-
-  /**
-   * @dev called by the owner to pause, triggers stopped state
-   */
-  function pause() onlyOwner whenNotPaused public {
-    paused = true;
-    Pause();
-  }
-
-  /**
-   * @dev called by the owner to unpause, returns to normal state
-   */
-  function unpause() onlyOwner whenPaused public {
-    paused = false;
-    Unpause();
-  }
-}
-
-// File: zeppelin-solidity/contracts/ownership/rbac/Roles.sol
-
-/**
- * @title Roles
- * @author Francisco Giordano (@frangio)
- * @dev Library for managing addresses assigned to a Role.
- *      See RBAC.sol for example usage.
- */
-library Roles {
-  struct Role {
-    mapping (address => bool) bearer;
-  }
-
-  /**
-   * @dev give an address access to this role
-   */
-  function add(Role storage role, address addr)
-    internal
-  {
-    role.bearer[addr] = true;
-  }
-
-  /**
-   * @dev remove an address' access to this role
-   */
-  function remove(Role storage role, address addr)
-    internal
-  {
-    role.bearer[addr] = false;
-  }
-
-  /**
-   * @dev check if an address has this role
-   * // reverts
-   */
-  function check(Role storage role, address addr)
-    view
-    internal
-  {
-    require(has(role, addr));
-  }
-
-  /**
-   * @dev check if an address has this role
-   * @return bool
-   */
-  function has(Role storage role, address addr)
-    view
-    internal
-    returns (bool)
-  {
-    return role.bearer[addr];
-  }
-}
-
-// File: zeppelin-solidity/contracts/ownership/rbac/RBAC.sol
-
-/**
- * @title RBAC (Role-Based Access Control)
- * @author Matt Condon (@Shrugs)
- * @dev Stores and provides setters and getters for roles and addresses.
- *      Supports unlimited numbers of roles and addresses.
- *      See //contracts/mocks/RBACMock.sol for an example of usage.
- * This RBAC method uses strings to key roles. It may be beneficial
- *  for you to write your own implementation of this interface using Enums or similar.
- * It's also recommended that you define constants in the contract, like ROLE_ADMIN below,
- *  to avoid typos.
- */
-contract RBAC {
-  using Roles for Roles.Role;
-
-  mapping (string => Roles.Role) private roles;
-
-  event RoleAdded(address addr, string roleName);
-  event RoleRemoved(address addr, string roleName);
-
-  /**
-   * A constant role name for indicating admins.
-   */
-  string public constant ROLE_ADMIN = "admin";
-
-  /**
-   * @dev constructor. Sets msg.sender as admin by default
-   */
-  function RBAC()
-    public
-  {
-    addRole(msg.sender, ROLE_ADMIN);
-  }
-
-  /**
-   * @dev reverts if addr does not have role
-   * @param addr address
-   * @param roleName the name of the role
-   * // reverts
-   */
-  function checkRole(address addr, string roleName)
-    view
-    public
-  {
-    roles[roleName].check(addr);
-  }
-
-  /**
-   * @dev determine if addr has role
-   * @param addr address
-   * @param roleName the name of the role
-   * @return bool
-   */
-  function hasRole(address addr, string roleName)
-    view
-    public
-    returns (bool)
-  {
-    return roles[roleName].has(addr);
-  }
-
-  /**
-   * @dev add a role to an address
-   * @param addr address
-   * @param roleName the name of the role
-   */
-  function adminAddRole(address addr, string roleName)
-    onlyAdmin
-    public
-  {
-    addRole(addr, roleName);
-  }
-
-  /**
-   * @dev remove a role from an address
-   * @param addr address
-   * @param roleName the name of the role
-   */
-  function adminRemoveRole(address addr, string roleName)
-    onlyAdmin
-    public
-  {
-    removeRole(addr, roleName);
-  }
-
-  /**
-   * @dev add a role to an address
-   * @param addr address
-   * @param roleName the name of the role
-   */
-  function addRole(address addr, string roleName)
-    internal
-  {
-    roles[roleName].add(addr);
-    RoleAdded(addr, roleName);
-  }
-
-  /**
-   * @dev remove a role from an address
-   * @param addr address
-   * @param roleName the name of the role
-   */
-  function removeRole(address addr, string roleName)
-    internal
-  {
-    roles[roleName].remove(addr);
-    RoleRemoved(addr, roleName);
-  }
-
-  /**
-   * @dev modifier to scope access to a single role (uses msg.sender as addr)
-   * @param roleName the name of the role
-   * // reverts
-   */
-  modifier onlyRole(string roleName)
-  {
-    checkRole(msg.sender, roleName);
-    _;
-  }
-
-  /**
-   * @dev modifier to scope access to admins
-   * // reverts
-   */
-  modifier onlyAdmin()
-  {
-    checkRole(msg.sender, ROLE_ADMIN);
-    _;
-  }
-
-  /**
-   * @dev modifier to scope access to a set of roles (uses msg.sender as addr)
-   * @param roleNames the names of the roles to scope access to
-   * // reverts
-   *
-   * @TODO - when solidity supports dynamic arrays as arguments to modifiers, provide this
-   *  see: https://github.com/ethereum/solidity/issues/2467
-   */
-  // modifier onlyRoles(string[] roleNames) {
-  //     bool hasAnyRole = false;
-  //     for (uint8 i = 0; i < roleNames.length; i++) {
-  //         if (hasRole(msg.sender, roleNames[i])) {
-  //             hasAnyRole = true;
-  //             break;
-  //         }
-  //     }
-
-  //     require(hasAnyRole);
-
-  //     _;
-  // }
-}
 
 // File: zeppelin-solidity/contracts/math/SafeMath.sol
 
@@ -563,47 +310,58 @@ contract MintableToken is StandardToken, Ownable {
 
 // File: contracts/bankorus.sol
 
-contract bankorus is MintableToken, Pausable, RBAC {
+contract Bankorus is MintableToken {
   string public name = "Bankorus";
   string public symbol = "BKT";
   uint8 public decimals = 18;
   uint256 public arrayLimit = 20;
+  bool public allow = true;
 
-  function bankorus(uint256 _totalSupply) public {
+  event LogAllow();
+
+  function Bankorus(uint256 _totalSupply) public {
     totalSupply_ = _totalSupply * 10 ** uint256(decimals);
     balances[owner] = totalSupply_;
+    Transfer(address(0), owner, totalSupply_);
   }
 
   function transfer(address _to, uint256 _value) public returns (bool success) {
-    if (!paused) {
+    if (allow == false) {
       require(msg.sender == owner);
     }
     return super.transfer(_to, _value);
   }
 
   function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+    if (allow == false) {
+      require(msg.sender == owner);
+    }
     return super.transferFrom(_from, _to, _value);
   }
 
-  function setArrayLimit(uint256 _newLimit) onlyAdmin public {
+  function setArrayLimit(uint256 _newLimit) onlyOwner public {
     require(_newLimit > 0);
     arrayLimit = _newLimit;
   }
 
-  function transferToAddresses(address[] _addresses, uint256[] _values) onlyAdmin public returns (bool success) {
+  function transferToAddresses(address[] _addresses, uint256[] _values) onlyOwner public returns (bool success) {
     require(_addresses.length == _values.length);
     require(_addresses.length <= arrayLimit);
 
+    if (allow == false) {
+      require(msg.sender == owner);
+    }
+
     uint8 i = 0;
     for (i; i < _addresses.length; i++) {
-      require(transferFrom(msg.sender, _addresses[i], _values[i]));
+      require(super.transfer(_addresses[i], _values[i]));
     }
     return true;
   }
 
-  function allowance(address _spender) public view returns (uint256) {
-    return super.allowance(msg.sender, _spender);
+  function changeAllow(bool newValue) onlyOwner public {
+    allow = newValue;
+    LogAllow();
   }
 
 }
-
