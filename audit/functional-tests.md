@@ -1,7 +1,7 @@
 # Functional tests
 Tests are conducted on the Kovan test network. The following contract has been verified on Etherscan.
 
-## [`Bankorus [0x668c04]`](https://kovan.etherscan.io/address/0x668c048a44c5fc90492fdcd142918a425ae060c0)
+## [`Bankorus [0x668c04]`](https://kovan.etherscan.io/address/0x668c048a44c5fc90492fdcd142918a425ae060c0#code)
 
 ## Accounts
 
