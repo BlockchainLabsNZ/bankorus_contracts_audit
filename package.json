@@ -9,7 +9,9 @@
     "truffle-wallet-provider": "0.0.5",
     "zeppelin-solidity": "^1.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "solidity-coverage": "^0.4.15"
+  },
   "scripts": {
     "compile": "truffle compile",
     "migrate": "truffle migrate"
