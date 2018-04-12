@@ -733,7 +733,7 @@ contract('StandardToken', function ([_, owner, recipient, anotherAccount]) {
 
 
 
-contract.only('Bankorus', function ([_, owner, recipient, anotherAccount]) {
+contract('Bankorus', function ([_, owner, recipient, anotherAccount]) {
   describe('', function(){
     let bankorus;
 
