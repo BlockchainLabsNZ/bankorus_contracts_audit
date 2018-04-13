@@ -1,11 +1,11 @@
 # Bankorus Token Contract Audit Report
 
 ## Preamble
-This audit report was undertaken by **BlockchainLabs.nz** for the purpose of providing feedback to **Bankorus**.
+This audit report was undertaken by **BlockchainLabs.nz** for the purpose of providing feedback to **MiCai**.
 
 It has subsequently been shared publicly without any express or implied warranty.
 
-Solidity contracts were sourced from the Ethereum mainnet at [BlockchainLabsNZ/bankorus_pre](https://github.com/BlockchainLabsNZ/bankorus_pre)
+Solidity contracts were sourced from our Github repository at [BlockchainLabsNZ/bankorus_pre](https://github.com/BlockchainLabsNZ/bankorus_pre)
 
 We would encourage all community members and token holders to make their own assessment of the contracts.
 
