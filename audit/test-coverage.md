@@ -44,7 +44,7 @@ function transferToAddresses(address[] _addresses, uint256[] _values) onlyOwner 
  
     uint8 i = 0;
     for (i; i < _addresses.length; i++) {
-      Erequire(super.transfer(_addresses[i], _values[i]));
+      require(super.transfer(_addresses[i], _values[i]));
     }
     return true;
 }
