@@ -101,6 +101,9 @@ The audit report focuses on the following key areas, although this list is not e
 - None found
 
 ## Observations
+
+Initially tokens can be minted causing the totalSupply to increase, however once the function `finishMinting()` has been called tokens cannot be minted again.
+
 The developers have chosen to restrict transferrability of tokens when the contract owner deems necessary.
 
 ```
