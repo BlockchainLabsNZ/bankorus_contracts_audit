@@ -5,7 +5,7 @@ This audit report was undertaken by **BlockchainLabs.nz** for the purpose of pro
 
 It has subsequently been shared publicly without any express or implied warranty.
 
-Solidity contracts were sourced from our Github repository at [BlockchainLabsNZ/bankorus_pre](https://github.com/BlockchainLabsNZ/bankorus_pre)
+Solidity contracts were sourced from client's R&D team, and stored at [BlockchainLabsNZ/bankorus_pre](https://github.com/BlockchainLabsNZ/bankorus_pre)
 
 We would encourage all community members and token holders to make their own assessment of the contracts.
 
