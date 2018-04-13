@@ -101,11 +101,22 @@ The audit report focuses on the following key areas, although this list is not e
 - None found
 
 ## Observations
+The developers have chosen to restrict transferrability of tokens when the contract owner deems necessary.
+
+```
+  function changeAllow(bool newValue) onlyOwner public {
+    allow = newValue;
+    LogAllow(newValue);
+  }
+```
+
+It is best practice to use the PausableToken library from [OpenZeppelin](https://github.com/OpenZeppelin) Framework.
+
 The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/contracts/flat_bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/scripts/companycoin.py) is currently not ready for production as it is only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
 
 ## Conclusion
 
-Overall we have not identified any potential vulnerabilities. This contract has a low level risk of BKT being hacked or stolen from the inspected contracts.
+Overall we have not identified any potential vulnerabilities. This contract has a low level risk of BKT being hacked or stolen from the inspected contracts. We were pleased with how responsive developers were of accepting our provided feedback. 
 
 ___
 
