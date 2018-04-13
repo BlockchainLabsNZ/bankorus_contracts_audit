@@ -15,12 +15,12 @@ module.exports = {
       gas: 0xfffffffffff, // <-- Use this high gas value
       gasPrice: 0x01      // <-- Use this low gas price
   }
-  ,
-  mocha: {
-      reporter: 'eth-gas-reporter',
-      reporterOptions : {
-          currency: 'USD',
-          gasPrice: 21
-      }
-  }
+  // ,
+  // mocha: {
+  //     reporter: 'eth-gas-reporter',
+  //     reporterOptions : {
+  //         currency: 'USD',
+  //         gasPrice: 21
+  //     }
+  // }
 };
