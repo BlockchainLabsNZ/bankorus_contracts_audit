@@ -79,6 +79,9 @@ The audit report focuses on the following key areas, although this list is not e
 - **uint256 can be used in replacement of uint8 to save gas** - `Gas Optimization`
 <br>We recommend using uint256 instead of uint8 on line #L47 as this will cost less gas. ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/2)
 
+- **If statement is redundant because onlyOwner has been used to transferToAddresses()**
+<br>This if statement checks whether the msg.sender is the contract owner. But this function, transferToAddresses(), has onlyOwner in the declaration, which makes this if statement redundant ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/4)
+
 ### Moderate
 
 - None found
