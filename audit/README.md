@@ -5,15 +5,14 @@ This audit report was undertaken by **BlockchainLabs.nz** for the purpose of pro
 
 It has subsequently been shared publicly without any express or implied warranty.
 
-Solidity contracts were sourced from client's R&D team, and stored at [BlockchainLabsNZ/bankorus_pre](https://github.com/BlockchainLabsNZ/bankorus_pre)
+Solidity contracts were sourced from client's R&D team, and stored at [BlockchainLabsNZ/bankorus_contracts_audit](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit)
 
 We would encourage all community members and token holders to make their own assessment of the contracts.
 
 ## Scope
 The following contracts were subject for static, dynamic and functional analyses:
 
-- [Bankorus.sol](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/contracts/bankorus.sol)
-
+- [Bankorus.sol](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/tree/master/contracts/bankorus.sol)
 
 ## Focus areas
 The audit report focuses on the following key areas, although this list is not exhaustive.
@@ -44,10 +43,10 @@ The audit report focuses on the following key areas, although this list is not e
 
 ## Analysis Reports
 
-- [Functional Analysis](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/audit/functional-tests.md)
-- [Dynamic Analysis](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/audit/dynamic-analysis.md)
-- [Gas Consumption](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/audit/gas-consumption-report.md)
-- [Test Coverage](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/audit/test-coverage.md)
+- [Functional Analysis](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/audit/functional-tests.md)
+- [Dynamic Analysis](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/audit/dynamic-analysis.md)
+- [Gas Consumption](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/audit/gas-consumption-report.md)
+- [Test Coverage](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/audit/test-coverage.md)
 
 ## Issues
 
@@ -83,10 +82,11 @@ The audit report focuses on the following key areas, although this list is not e
 
 - **If statement is redundant because onlyOwner has been used to transferToAddresses()**
 <br>This if statement checks whether the msg.sender is the contract owner. But this function, transferToAddresses(), has onlyOwner in the declaration, which makes this if statement redundant ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/4)
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3)
 
 - **repeated if statement can be replaced by modifier**
 <br>Same if statement appears three time in different functions. Suggest to use a modifier to replace repeated codes ...[View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/5)
-
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3)
 
 ### Moderate
 
@@ -104,6 +104,7 @@ The audit report focuses on the following key areas, although this list is not e
 
 ### No Fixed Supply
 Initially tokens can be minted causing the totalSupply to increase, however once the function `finishMinting()` has been called tokens cannot be minted again. If the owner does not call `finishMinting()` then there is no fixed supply of BKT.
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3) . The developers removed MintableToken.sol.
 
 ### Allow Transfer
 The developers have chosen to restrict transferrability of tokens when the contract owner deems necessary.
@@ -116,9 +117,10 @@ The developers have chosen to restrict transferrability of tokens when the contr
 ```
 
 It is best practice to use the PausableToken library from [OpenZeppelin](https://github.com/OpenZeppelin) Framework.
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3) . The developers removed this feature.
 
 ### Token Distribution Script
-The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/contracts/flat_bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_pre/blob/master/scripts/companycoin.py) is currently not ready for production as it is only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
+The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/contracts/flat_bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/scripts/companycoin.py) is currently not ready for production as it is only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
 
 ## Conclusion
 
