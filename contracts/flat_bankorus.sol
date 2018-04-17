@@ -263,52 +263,7 @@ contract StandardToken is ERC20, BasicToken {
 
 }
 
-// File: zeppelin-solidity/contracts/token/ERC20/MintableToken.sol
-
-/**
- * @title Mintable token
- * @dev Simple ERC20 Token example, with mintable token creation
- * @dev Issue: * https://github.com/OpenZeppelin/zeppelin-solidity/issues/120
- * Based on code by TokenMarketNet: https://github.com/TokenMarketNet/ico/blob/master/contracts/MintableToken.sol
- */
-contract MintableToken is StandardToken, Ownable {
-  event Mint(address indexed to, uint256 amount);
-  event MintFinished();
-
-  bool public mintingFinished = false;
-
-
-  modifier canMint() {
-    require(!mintingFinished);
-    _;
-  }
-
-  /**
-   * @dev Function to mint tokens
-   * @param _to The address that will receive the minted tokens.
-   * @param _amount The amount of tokens to mint.
-   * @return A boolean that indicates if the operation was successful.
-   */
-  function mint(address _to, uint256 _amount) onlyOwner canMint public returns (bool) {
-    totalSupply_ = totalSupply_.add(_amount);
-    balances[_to] = balances[_to].add(_amount);
-    Mint(_to, _amount);
-    Transfer(address(0), _to, _amount);
-    return true;
-  }
-
-  /**
-   * @dev Function to stop minting new tokens.
-   * @return True if the operation was successful.
-   */
-  function finishMinting() onlyOwner canMint public returns (bool) {
-    mintingFinished = true;
-    MintFinished();
-    return true;
-  }
-}
-
-contract Bankorus is MintableToken {
+contract Bankorus is StandardToken, Ownable {
 
   using SafeMath for uint256;
 
@@ -316,31 +271,11 @@ contract Bankorus is MintableToken {
   string public symbol = "BKT";
   uint8 public decimals = 18;
   uint256 public arrayLimit = 20;
-  uint256 public totalAllocated = 0;
-  bool public allow = true;
-
-  event LogAllow(bool allow);
 
   function Bankorus(uint256 _totalSupply) public {
     totalSupply_ = _totalSupply * 10 ** uint256(decimals);
     balances[owner] = totalSupply_;
     Transfer(address(0), owner, totalSupply_);
-  }
-
-  function transfer(address _to, uint256 _value) public returns (bool success) {
-    if (allow == false) {
-      require(msg.sender == owner);
-    }
-
-    require(super.transfer(_to, _value));
-    return true;
-  }
-
-  function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-    if (allow == false) {
-      require(msg.sender == owner);
-    }
-    return super.transferFrom(_from, _to, _value);
   }
 
   function setArrayLimit(uint256 _newLimit) onlyOwner public {
@@ -352,25 +287,12 @@ contract Bankorus is MintableToken {
     require(_addresses.length == _values.length);
     require(_addresses.length <= arrayLimit);
 
-    if (allow == false) {
-      require(msg.sender == owner);
-    }
-
     uint256 i = 0;
     for (i; i < _addresses.length; i++) {
       require(super.transfer(_addresses[i], _values[i]));
-      totalAllocated = totalAllocated.add(_values[i]);
     }
     return true;
   }
 
-  function changeAllow(bool newValue) onlyOwner public {
-    allow = newValue;
-    LogAllow(newValue);
-  }
-
-  function grandTotalAllocated() public view returns (uint256) {
-    return totalSupply_.sub(totalAllocated);
-  }
-
 }
+
