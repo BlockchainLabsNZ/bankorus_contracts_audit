@@ -83,11 +83,12 @@ The audit report focuses on the following key areas, although this list is not e
 
 - **If statement is redundant because onlyOwner has been used to transferToAddresses()**
 <br>This if statement checks whether the msg.sender is the contract owner. But this function, transferToAddresses(), has onlyOwner in the declaration, which makes this if statement redundant ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/4)
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3)
 
 - **repeated if statement can be replaced by modifier**
 <br>Same if statement appears three time in different functions. Suggest to use a modifier to replace repeated codes ...[View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/5)
-
-
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3)
+  
 ### Moderate
 
 - None found
@@ -101,6 +102,23 @@ The audit report focuses on the following key areas, although this list is not e
 - None found
 
 ## Observations
+
+### No Fixed Supply
+Initially tokens can be minted causing the totalSupply to increase, however once the function `finishMinting()` has been called tokens cannot be minted again. If the owner does not call `finishMinting()` then there is no fixed supply of BKT.
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3) . The developers removed MintableToken.sol.
+
+### Allow Transfer
+The developers have chosen to restrict transferrability of tokens when the contract owner deems necessary.
+
+```
+  function changeAllow(bool newValue) onlyOwner public {
+    allow = newValue;
+    LogAllow(newValue);
+  }
+```
+
+It is best practice to use the PausableToken library from [OpenZeppelin](https://github.com/OpenZeppelin) Framework.
+  - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3) . The developers removed this feature.
 
 ### Token Distribution Script
 The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/contracts/bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/scripts/companycoin.py) is currently only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
