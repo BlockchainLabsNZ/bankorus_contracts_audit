@@ -76,7 +76,7 @@ The audit report focuses on the following key areas, although this list is not e
 <br>The LowAllog event is currently not logging anything, see here on #L56 ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/3)
   - [x] Fixed [10f0d448](https://github.com/BlockchainLabsNZ/bankorus_pre/commit/10f0d448aa493c3e9ac8212f23da375af99b08df)
 
-- **uint256 can be used in replacement of uint8 to save gas** - `Gas Optimization`
+- **Uint256 can be used in replacement of uint8 to save gas** - `Gas Optimization`
 <br>We recommend using uint256 instead of uint8 on line #L47 as this will cost less gas. ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/2)
   - [x] Fixed [10f0d448](https://github.com/BlockchainLabsNZ/bankorus_pre/commit/10f0d448aa493c3e9ac8212f23da375af99b08df)
 
@@ -84,7 +84,7 @@ The audit report focuses on the following key areas, although this list is not e
 <br>This if statement checks whether the msg.sender is the contract owner. But this function, transferToAddresses(), has onlyOwner in the declaration, which makes this if statement redundant ... [View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/4)
   - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3)
 
-- **repeated if statement can be replaced by modifier**
+- **Repeated if statement can be replaced by modifier**
 <br>Same if statement appears three time in different functions. Suggest to use a modifier to replace repeated codes ...[View on GitHub](https://github.com/BlockchainLabsNZ/bankorus_pre/issues/5)
   - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3)
 
