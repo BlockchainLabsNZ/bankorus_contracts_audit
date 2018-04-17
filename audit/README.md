@@ -12,7 +12,7 @@ We would encourage all community members and token holders to make their own ass
 ## Scope
 The following contracts were subject for static, dynamic and functional analyses:
 
-- [Bankorus.sol](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/tree/master/contracts/bankorus.sol)
+- [Bankorus.sol](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/contracts/bankorus.sol)
 
 ## Focus areas
 The audit report focuses on the following key areas, although this list is not exhaustive.
@@ -120,7 +120,7 @@ It is best practice to use the PausableToken library from [OpenZeppelin](https:/
   - [x] Fixed [4f651320](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/4f6513202b60fef4ca187b3451de2e94c87426c3) . The developers removed this feature.
 
 ### Token Distribution Script
-The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/contracts/flat_bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/scripts/companycoin.py) is currently not ready for production as it is only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
+The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/contracts/bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/scripts/companycoin.py) is currently only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
 
 ## Conclusion
 
