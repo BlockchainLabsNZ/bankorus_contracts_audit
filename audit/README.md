@@ -124,7 +124,7 @@ The Bankorus team will use a Python script to distribute tokens to an array of a
 
   - [x] Fixed [baf3d389](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/baf3d3893de89c8ca4754b80463a8d7780006492). The developers have demonstrated allowance for multiple addresses and values to be used.
 
-Note: We recommened not using floating points in the script as this could yield unexpected results, see [here](https://kovan.etherscan.io/tx/0xf249c56cad6ded3f2858c2c9020a0e692f8b325d32ac74a154dc7a6d5179f9ef). 
+Note: We recommend not using floating points in the script as this could yield unexpected results, see [here](https://kovan.etherscan.io/tx/0xf249c56cad6ded3f2858c2c9020a0e692f8b325d32ac74a154dc7a6d5179f9ef). 
 
 Example:
 1.1 can produce a value of 1.100000000000000128 and 2.09 can unexpectedly produce a value of 2.089999999999999744.
