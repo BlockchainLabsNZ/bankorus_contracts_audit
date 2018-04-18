@@ -122,7 +122,7 @@ It is best practice to use the PausableToken library from [OpenZeppelin](https:/
 ### Token Distribution Script
 The Bankorus team will use a Python script to distribute tokens to an array of addresses after [`Bankorus.sol`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/contracts/bankorus.sol) has successfully been deployed.  The script [`companycoin.py`](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/blob/master/scripts/companycoin.py) is currently only being used with sending tokens to a single address, and will need to be adapted to be compatible with distributing tokens to multiple addresses. It is also possible that this script will need adapting to support multiple token values being sent as well. 
 
-  - [x] Fixed [baf3d389](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/baf3d3893de89c8ca4754b80463a8d7780006492). The developers have demonstrated allowance for multiple addresses and values to be executed.
+  - [x] Fixed [baf3d389](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/commit/baf3d3893de89c8ca4754b80463a8d7780006492). The developers have demonstrated allowance for multiple addresses and values to be used.
 
 ## Conclusion
 
