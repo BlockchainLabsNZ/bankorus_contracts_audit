@@ -8,7 +8,7 @@ File                    |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered L
 
 
 
-Full coverage report of related contracts is [here](https://github.com/BlockchainLabsNZ/bankorus_pre/tree/master/audit/coverage).
+Full coverage report of related contracts is [here](https://github.com/BlockchainLabsNZ/bankorus_contracts_audit/tree/master/audit/coverage).
 
 <br>
 
