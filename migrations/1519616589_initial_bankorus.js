@@ -2,5 +2,5 @@ var bk = artifacts.require("./Bankorus.sol")
 
 module.exports = function(deployer) {
   // Use deployer to state migration tasks.
-  deployer.deploy(bk, 1000);
+  deployer.deploy(bk, 100000000000);
 };
